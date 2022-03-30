@@ -17,8 +17,25 @@ namespace CreationModelPlugin
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
             List<Wall> walls = CreateUtils.CreateWalls(commandData);
-            
+            Level level1 = LevelsUtils.GetLevel1(commandData);
+
+            Transaction tr = new Transaction(doc, "Добавление двери и окон");
+            tr.Start();
+
+            CreateUtils.AddDoor(doc, level1, walls[0]);
+            CreateUtils.AddWindow(doc, level1, walls[1]);
+            CreateUtils.AddWindow(doc, level1, walls[2]);
+            CreateUtils.AddWindow(doc, level1, walls[3]);
+
+
+            tr.Commit();
+
+
             return Result.Succeeded;
         }
+        
+        
+        
+
     }
 }

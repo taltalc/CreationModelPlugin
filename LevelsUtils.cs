@@ -10,24 +10,38 @@ namespace CreationModelPlugin
 {
     class LevelsUtils
     {
-        public static List<Level> GetLevels(ExternalCommandData commandData)
+        public static Level GetLevel1(ExternalCommandData commandData)
         {
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
-            List<Level> levels = new FilteredElementCollector(doc)
+            Level level1 = new FilteredElementCollector(doc)
             .OfClass(typeof(Level))
             .OfType<Level>()
-            .ToList();
+            .Where(t => t.Name.Equals("Уровень 1"))
+                .FirstOrDefault();
 
-            return levels;
+            return level1;
+
+        }
+        public static Level GetLevel2(ExternalCommandData commandData)
+        {
+            Document doc = commandData.Application.ActiveUIDocument.Document;
+
+            Level level2 = new FilteredElementCollector(doc)
+            .OfClass(typeof(Level))
+            .OfType<Level>()
+            .Where(t => t.Name.Equals("Уровень 2"))
+                .FirstOrDefault();
+
+            return level2;
 
         }
 
-         
-        
 
-        
 
-            
+
+
+
+
     }
 }
