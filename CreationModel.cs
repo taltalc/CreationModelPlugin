@@ -18,15 +18,15 @@ namespace CreationModelPlugin
 
             List<Wall> walls = CreateUtils.CreateWalls(commandData);
             Level level1 = LevelsUtils.GetLevel1(commandData);
-
-            Transaction tr = new Transaction(doc, "Добавление двери и окон");
+            Level level2 = LevelsUtils.GetLevel2(commandData);
+            Transaction tr = new Transaction(doc, "Добавление двери, окон и крыши");
             tr.Start();
 
             CreateUtils.AddDoor(doc, level1, walls[0]);
             CreateUtils.AddWindow(doc, level1, walls[1]);
             CreateUtils.AddWindow(doc, level1, walls[2]);
             CreateUtils.AddWindow(doc, level1, walls[3]);
-
+            CreateUtils.AddRoof(doc, level2, walls);
 
             tr.Commit();
 
